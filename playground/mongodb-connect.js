@@ -1,7 +1,7 @@
 //const MongoClient = require('mongodb').MongoClient;
 const { MongoClient, ObjectID } = require('mongodb'); //object destructuring
 
-MongoClient.connect('mongodb://testuser1:testuser1@ds139534.mlab.com:39534/mongoose-for-nodejs-todo-api', (err, db) => {
+MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
     if (err) {
         return console.log('Unable to connect to MongoDB server');
     }
