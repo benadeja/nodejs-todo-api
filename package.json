@@ -16,13 +16,14 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "mongodb": "^2.2.36",
     "mongoose": "^4.13.17"
   },
   "devDependencies": {
     "expect": "^1.20.2",
-    "mocha": "^3.5.3",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.8",
-    "supertest": "^2.0.1"
+    "supertest": "^3.3.0"
   }
 }
