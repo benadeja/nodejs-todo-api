@@ -83,4 +83,7 @@ typings/
 # Config file
 server/config/config.json
 
+# Visual Studio code folders
+.vscode
+
 # End of https://www.gitignore.io/api/node
