@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 
+/**
+ * Todo model that will hold the todos data structure
+ */
 var Todo = mongoose.model('Todo', {
   text: {
     type: String,

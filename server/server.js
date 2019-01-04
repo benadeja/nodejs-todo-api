@@ -10,11 +10,17 @@ var { Todo } = require('./models/todo');
 var { User } = require('./models/user');
 var { authenticate } = require('./middleware/authenticate');
 
+/**
+ * Setup Express
+ */
 var app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+/**
+ * Create new todos
+ */
 app.post('/todos', authenticate, (req, res) => {
   var todo = new Todo({
     text: req.body.text,
@@ -28,6 +34,9 @@ app.post('/todos', authenticate, (req, res) => {
   });
 });
 
+/**
+ * Return todos
+ */
 app.get('/todos', authenticate, (req, res) => {
   Todo.find({
     _creator: req.user._id
@@ -38,6 +47,9 @@ app.get('/todos', authenticate, (req, res) => {
   });
 });
 
+/**
+ * Return todos by id
+ */
 app.get('/todos/:id', authenticate, (req, res) => {
   var id = req.params.id;
 
@@ -59,6 +71,9 @@ app.get('/todos/:id', authenticate, (req, res) => {
   });
 });
 
+/**
+ * Delete todos by id
+ */
 app.delete('/todos/:id', authenticate, (req, res) => {
   var id = req.params.id;
 
@@ -80,6 +95,9 @@ app.delete('/todos/:id', authenticate, (req, res) => {
   });
 });
 
+/**
+ * Update todos by id
+ */
 app.patch('/todos/:id', authenticate, (req, res) => {
   var id = req.params.id;
   var body = _.pick(req.body, ['text', 'completed']);
@@ -106,7 +124,9 @@ app.patch('/todos/:id', authenticate, (req, res) => {
   })
 });
 
-// POST /users
+/**
+ * Register a new user
+ */
 app.post('/users', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
   var user = new User(body);
@@ -120,11 +140,16 @@ app.post('/users', (req, res) => {
   })
 });
 
+/**
+ * Get a user based on token
+ */
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user);
 });
 
-// POST /users/login
+/**
+ * Login a user and return a token
+ */
 app.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
 
@@ -137,6 +162,9 @@ app.post('/users/login', (req, res) => {
   })
 });
 
+/**
+ * Logout a user, basically it removes a user's token
+ */
 app.delete('/users/me/token', authenticate, (req, res) => {
   req.user.removeToken(req.token).then(() => {
     res.status(200).send();
@@ -145,6 +173,9 @@ app.delete('/users/me/token', authenticate, (req, res) => {
   });
 });
 
+/**
+ * Tell Express on which port to listen
+ */
 app.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });

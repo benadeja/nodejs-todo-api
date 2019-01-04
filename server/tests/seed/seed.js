@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const { Todo } = require('./../../models/todo');
 const { User } = require('./../../models/user');
 
+/**
+ * Create users seed data for testing
+ */
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
 const users = [{
@@ -24,6 +27,9 @@ const users = [{
   }]
 }];
 
+/**
+ * Create todos seed data for testing
+ */
 const todos = [{
   _id: new ObjectID(),
   text: 'First test todo',
@@ -36,12 +42,18 @@ const todos = [{
   _creator: userTwoId
 }];
 
+/**
+ * Populate the todos seed data
+ */
 const populateTodos = (done) => {
   Todo.remove({}).then(() => {
     return Todo.insertMany(todos);
   }).then(() => done());
 };
 
+/** 
+ * Populate the users seed data
+ */
 const populateUsers = (done) => {
   User.remove({}).then(() => {
     var userOne = new User(users[0]).save();

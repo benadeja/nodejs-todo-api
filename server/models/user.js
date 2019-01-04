@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
+/**
+ * User model that will hold the users data structure
+ */
 var UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -33,6 +36,9 @@ var UserSchema = new mongoose.Schema({
   }]
 }, { usePushEach: true });
 
+/**
+ * Model instance method to forma the json that is being displayed
+ */
 UserSchema.methods.toJSON = function () {
   var user = this;
   var userObject = user.toObject();
@@ -40,6 +46,9 @@ UserSchema.methods.toJSON = function () {
   return _.pick(userObject, ['_id', 'email']);
 };
 
+/**
+ * Model instance method to generate the auth token
+ */
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
@@ -52,6 +61,9 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
+/**
+ * Model instance method to remove the auth token
+ */
 UserSchema.methods.removeToken = function (token) {
   var user = this;
 
@@ -62,6 +74,9 @@ UserSchema.methods.removeToken = function (token) {
   });
 };
 
+/**
+ * Model static function to retrieve the user by token
+ */
 UserSchema.statics.findByToken = function (token) {
   var User = this;
   var decoded;
@@ -79,6 +94,9 @@ UserSchema.statics.findByToken = function (token) {
   });
 };
 
+/**
+ * Model static function to retrieve the user by credentails
+ */
 UserSchema.statics.findByCredentials = function (email, password) {
   var User = this;
 
@@ -100,6 +118,10 @@ UserSchema.statics.findByCredentials = function (email, password) {
   });
 };
 
+/**
+ * Middleware function to run before save is being called in the db,
+ * it basically hashes the plain text password before being inserted into the db
+ */
 UserSchema.pre('save', function (next) {
   var user = this;
 
