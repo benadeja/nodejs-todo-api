@@ -7,6 +7,19 @@
 	"item": [
 		{
 			"name": "Todo-Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60a32b8e-8132-4030-9674-fba8914fdb08",
+						"exec": [
+							"var body = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('todoId', body._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -14,6 +27,11 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "{{x-auth}}",
 						"type": "text"
 					}
 				],
@@ -46,6 +64,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "{{x-auth}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -77,6 +100,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "{{x-auth}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -84,13 +112,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/todos/5c1a4b4484317800158a33cf",
+					"raw": "{{url}}/todos/{{todoId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"todos",
-						"5c1a4b4484317800158a33cf"
+						"{{todoId}}"
 					]
 				}
 			},
@@ -106,6 +134,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "{{x-auth}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -113,13 +146,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/todos/5c1a3db46be18860f2eb971f",
+					"raw": "{{url}}/todos/{{todoId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"todos",
-						"5c1a3db46be18860f2eb971f"
+						"{{todoId}}"
 					]
 				}
 			},
@@ -135,6 +168,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "x-auth",
+						"value": "{{x-auth}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -142,13 +180,13 @@
 					"raw": "{\n\t\"completed\": true\n}"
 				},
 				"url": {
-					"raw": "{{url}}/todos/5c1b5c7e341eed2878bc0bae",
+					"raw": "{{url}}/todos/{{todoId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"todos",
-						"5c1b5c7e341eed2878bc0bae"
+						"{{todoId}}"
 					]
 				}
 			},
@@ -156,6 +194,19 @@
 		},
 		{
 			"name": "Users - Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "70cc1ac6-ce5e-476e-8cb7-30b77bd77756",
+						"exec": [
+							"var token = postman.getResponseHeader('x-auth');",
+							"postman.setEnvironmentVariable('x-auth', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -168,7 +219,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"jaco.benade4@gmail.com\",\n\t\"password\": \"Benade007\"\n}"
+					"raw": "{\n\t\"email\": \"jaco.benade5@gmail.com\",\n\t\"password\": \"Benade007\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}/users",
@@ -189,7 +240,7 @@
 				"header": [
 					{
 						"key": "x-auth",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzFjZTdlMjhiYWZhMDQzYTEzM2M2ZjciLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQ1Mzk4MjQyfQ.GP4et3XWnWAy22gYPgFkPYc_vIBx4hdyL5AWswufZcQ",
+						"value": "{{x-auth}}",
 						"type": "text"
 					}
 				],
@@ -212,6 +263,19 @@
 		},
 		{
 			"name": "Login - Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b0d565c-273a-40d5-8ad3-cac1525fea45",
+						"exec": [
+							"var token = postman.getResponseHeader('x-auth');",
+							"postman.setEnvironmentVariable('x-auth', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -224,7 +288,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"jaco.benade2@gmail.com\",\n\t\"password\": \"Benade007!\"\n}"
+					"raw": "{\n\t\"email\": \"jaco.benade5@gmail.com\",\n\t\"password\": \"Benade007\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}/users/login",
@@ -246,7 +310,7 @@
 				"header": [
 					{
 						"key": "x-auth",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzJjOWFlYjdmOTk0MjY0OTU5OWU4ZTkiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTQ2NDI3MTE1fQ.iDcfnLeXq-l3eUxpyVjoMDeCFePRC6fR7Zp6xPklBk0",
+						"value": "{{x-auth}}",
 						"type": "text"
 					}
 				],
