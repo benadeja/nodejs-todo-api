@@ -9,6 +9,12 @@ This application provide 2 api endpoints:
 
 This API is also hosted on Heroku at this context path : https://hidden-cliffs-17705.herokuapp.com 
 
+## Tech Stack Showcased
+- NodeJS
+- Express
+- Mongoose
+- MongoDB
+
 ## Getting Started
 
 Make sure you have Nodejs and npm installed on your machine.
